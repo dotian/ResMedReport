@@ -42,7 +42,7 @@
             this.txtBedInfo = new System.Windows.Forms.TextBox();
             this.txtBirth = new System.Windows.Forms.TextBox();
             this.txtCreateDate = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvReports = new System.Windows.Forms.DataGridView();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnOpen = new System.Windows.Forms.Button();
@@ -53,11 +53,11 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtId_Search = new System.Windows.Forms.TextBox();
+            this.txtName_Search = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReports)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -175,13 +175,13 @@
             this.txtCreateDate.Size = new System.Drawing.Size(187, 20);
             this.txtCreateDate.TabIndex = 3;
             // 
-            // dataGridView1
+            // dgvReports
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(25, 81);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(489, 341);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvReports.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReports.Location = new System.Drawing.Point(25, 81);
+            this.dgvReports.Name = "dgvReports";
+            this.dgvReports.Size = new System.Drawing.Size(489, 341);
+            this.dgvReports.TabIndex = 0;
             // 
             // btnPrint
             // 
@@ -201,6 +201,7 @@
             this.btnSearch.TabIndex = 6;
             this.btnSearch.Text = "查询";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnOpen
             // 
@@ -210,6 +211,7 @@
             this.btnOpen.TabIndex = 6;
             this.btnOpen.Text = "打开所选文件";
             this.btnOpen.UseVisualStyleBackColor = true;
+            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
             // tabControl1
             // 
@@ -287,10 +289,10 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.btnOpen);
-            this.tabPage2.Controls.Add(this.dataGridView1);
-            this.tabPage2.Controls.Add(this.textBox1);
+            this.tabPage2.Controls.Add(this.dgvReports);
+            this.tabPage2.Controls.Add(this.txtId_Search);
             this.tabPage2.Controls.Add(this.btnSearch);
-            this.tabPage2.Controls.Add(this.textBox2);
+            this.tabPage2.Controls.Add(this.txtName_Search);
             this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -301,19 +303,19 @@
             this.tabPage2.Text = "查询报告";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtId_Search
             // 
-            this.textBox1.Location = new System.Drawing.Point(327, 16);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(187, 20);
-            this.textBox1.TabIndex = 9;
+            this.txtId_Search.Location = new System.Drawing.Point(327, 16);
+            this.txtId_Search.Name = "txtId_Search";
+            this.txtId_Search.Size = new System.Drawing.Size(187, 20);
+            this.txtId_Search.TabIndex = 9;
             // 
-            // textBox2
+            // txtName_Search
             // 
-            this.textBox2.Location = new System.Drawing.Point(59, 16);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(200, 20);
-            this.textBox2.TabIndex = 10;
+            this.txtName_Search.Location = new System.Drawing.Point(59, 16);
+            this.txtName_Search.Name = "txtName_Search";
+            this.txtName_Search.Size = new System.Drawing.Size(200, 20);
+            this.txtName_Search.TabIndex = 10;
             // 
             // label9
             // 
@@ -345,7 +347,7 @@
             this.ShowIcon = false;
             this.Text = "睡眠监测总结报告";
             this.Load += new System.EventHandler(this.Main_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReports)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -357,7 +359,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvReports;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label5;
@@ -382,8 +384,8 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtId_Search;
+        private System.Windows.Forms.TextBox txtName_Search;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
     }

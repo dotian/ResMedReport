@@ -14,7 +14,7 @@ namespace ResMedSummaryReport
 {
     public partial class Main : Form
     {
-        private static string ReportSavePath = Environment.CurrentDirectory;
+        private static string ReportSavePath =Path.Combine( Environment.CurrentDirectory,"Reports");
 
         public Main()
         {
@@ -23,9 +23,15 @@ namespace ResMedSummaryReport
 
         #region Event
 
+        private void Main_Load(object sender, EventArgs e)
+        {
+            txtCreateDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+        }
+
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("是否确认打印？", "确认打印", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            var result = MessageBox.Show("是否确认打印？", "确认打印", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
             {
                 try
                 {
@@ -41,9 +47,30 @@ namespace ResMedSummaryReport
             }
         }
 
-        private void Main_Load(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
-            txtCreateDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            try
+            {
+                string name = txtName_Search.Text;
+                string id = txtId_Search.Text;
+                if (string.IsNullOrEmpty(name) && string.IsNullOrEmpty(id))
+                {
+                    throw new Exception("姓名和住院号需至少填入一项。");
+                }
+
+                DirectoryInfo dir = new DirectoryInfo(ReportSavePath);
+                var reports = dir.GetFiles();
+                dgvReports.DataBindings = 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("系统报错：" + ex.Message, "系统报错", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnOpen_Click(object sender, EventArgs e)
+        {
+
         }
 
         #endregion
@@ -84,5 +111,6 @@ namespace ResMedSummaryReport
 
             return report;
         }
+
     }
 }
