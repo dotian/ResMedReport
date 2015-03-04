@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,7 +15,7 @@ namespace ResMedSummaryReport
 {
     public partial class Main : Form
     {
-        private static string ReportSavePath =Path.Combine( Environment.CurrentDirectory,"Reports");
+        private static string ReportSavePath = Path.Combine(Environment.CurrentDirectory, "Reports");
 
         public Main()
         {
@@ -36,7 +37,7 @@ namespace ResMedSummaryReport
                 try
                 {
                     var report = GetReport();
-                    string filePath = Path.Combine(ReportSavePath, report.Name + report.Id);
+                    string filePath = Path.Combine(ReportSavePath, report.Name + "_" + report.Id);
                     report.Save(filePath);
                     report.Print();
                 }
@@ -58,9 +59,11 @@ namespace ResMedSummaryReport
                     throw new Exception("姓名和住院号需至少填入一项。");
                 }
 
+                string regex = string.IsNullOrEmpty(id) ? name + "_.*" : ".*_" + id + "$";
+
                 DirectoryInfo dir = new DirectoryInfo(ReportSavePath);
-                var reports = dir.GetFiles();
-                dgvReports.DataBindings = 
+                var reports = dir.GetFiles().Where(f => Regex.IsMatch(f.Name, regex));
+
             }
             catch (Exception ex)
             {
