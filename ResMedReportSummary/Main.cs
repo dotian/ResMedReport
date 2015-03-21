@@ -29,14 +29,54 @@ namespace ResMedSummaryReport
         private void Main_Load(object sender, EventArgs e)
         {
             txtCreateDate.Text = DateTime.Now.ToString(strDateFormat);
-            //txtName.Text = "张某某";
-            //txtId.Text = "1234567";
-            //txtGender.Text = "男";
-            //txtBedInfo.Text = "18区40床xxxx";
-            //txtAge.Text = "20";
-            //txtDiagnosis.Text = "1. 重度睡眠呼吸暂停综合征。\n2. 夜间重度低氧血症。\n3. 其他";
-            //txtSuggestion.Text = "1. 随访，积极治疗原发疾病。\n2. 必要时予以气道正压通气呼吸机治疗。\n3. 其他";
-            //txtBirth.Text = "1967年1月1日";
+            if (ConfigurationManager.AppSettings["test"] != "true")
+            {
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, Report.FlowEvaluationPeriodKey, "", "");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, Report.SpO2EvaluationPeriodKey, "", "");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "呼吸暂停指数（AHI）", "<5/h", "");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "呼吸指数（RI）", "<5", "");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "氧减指数（ODI）", "<5/h", "");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "平均氧饱和度", "94%--98%", "");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "最低氧饱和度", "90%--98%", "");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "呼吸暂停次数", "", "");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "未分类型呼吸暂停次数（占比）", "", "");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "阻塞型呼吸暂停次数（占比）", "", "");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "中枢型呼吸暂停次数（占比）", "", "");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "混合呼吸暂停次数（占比）", "", "");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "低通气次数", "", "");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "氧减事件数量", "", "");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "氧饱和度低于90%总时长", "", "");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "氧饱和度低于85%总时长", "", "");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "氧饱和度低于80%总时长", "", "");
+            }
+            else
+            {
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, Report.FlowEvaluationPeriodKey, "", "12小时12分钟");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, Report.SpO2EvaluationPeriodKey, "", "14小时30分钟");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "呼吸暂停指数（AHI）", "<5/h", "1234");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "呼吸指数（RI）", "<5", "1234");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "氧减指数（ODI）", "<5/h", "1234");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "平均氧饱和度", "94%--98%", "1234");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "最低氧饱和度", "90%--98%", "1234");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "呼吸暂停次数", "1234", "1234");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "未分类型呼吸暂停次数（占比）", "1234", "1234");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "阻塞型呼吸暂停次数（占比）", "1234", "1234");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "中枢型呼吸暂停次数（占比）", "1234", "1234");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "混合呼吸暂停次数（占比）", "1234", "1234");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "低通气次数", "1234", "1234");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "氧减事件数量", "1234", "1234");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "氧饱和度低于90%总时长", "1234", "1234");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "氧饱和度低于85%总时长", "1234", "1234");
+                dgvDetails.Rows.Add(dgvDetails.Rows.Count + 1, "氧饱和度低于80%总时长", "1234", "1234");
+                txtName.Text = "李某某";
+                txtId.Text = "1234567";
+                txtGender.Text = "男";
+                txtBedInfo.Text = "18区40床xxxx";
+                txtAge.Text = "20";
+                txtDiagnosis.Text = "1. 重度睡眠呼吸暂停综合征。\n2. 夜间重度低氧血症。\n3. 其他";
+                txtSuggestion.Text = "1. 随访，积极治疗原发疾病。\n2. 必要时予以气道正压通气呼吸机治疗。\n3. 其他";
+                txtBirth.Text = "1967年12月12日";
+            }
 
             DirectoryInfo dir = new DirectoryInfo(ReportSavePath);
             if (!dir.Exists)
@@ -55,6 +95,7 @@ namespace ResMedSummaryReport
                     var report = GetReport();
                     string filePath = Path.Combine(ReportSavePath, report.Name + "_" + report.Id + ".pdf");
                     report.Save(filePath);
+
                     report.Print();
                 }
                 catch (Exception ex)
@@ -141,8 +182,32 @@ namespace ResMedSummaryReport
                 throw new Exception("建议内容过长。");
             }
 
+            var count = dgvDetails.Rows.Count;
+            for (int i = 0; i < count; i++)
+            {
+                var row = dgvDetails.Rows[i];
+                var key = row.Cells[1].Value.ToString();
+
+                if (key == Report.FlowEvaluationPeriodKey)
+                {
+                    report.FlowEvaluationPeriod = row.Cells[3].Value.ToString();
+                }
+                else if (key == Report.SpO2EvaluationPeriodKey)
+                {
+                    report.SpO2EvaluationPeriod = row.Cells[3].Value.ToString();
+                }
+                else
+                {
+                    report.Details.Add(new string[] 
+                    { 
+                        key,
+                        row.Cells[2].Value.ToString(), 
+                        row.Cells[3].Value.ToString() 
+                    });
+                }
+            }
+
             return report;
         }
-
     }
 }

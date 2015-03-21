@@ -43,11 +43,20 @@
             this.txtBirth = new System.Windows.Forms.TextBox();
             this.txtCreateDate = new System.Windows.Forms.TextBox();
             this.dgvReports = new System.Windows.Forms.DataGridView();
+            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnOpen = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label12 = new System.Windows.Forms.Label();
+            this.dgvDetails = new System.Windows.Forms.DataGridView();
+            this.colNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLabel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDefault = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSuggestion = new System.Windows.Forms.RichTextBox();
             this.txtDiagnosis = new System.Windows.Forms.RichTextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -57,19 +66,17 @@
             this.txtName_Search = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReports)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(40, 20);
+            this.label1.Location = new System.Drawing.Point(9, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 12);
             this.label1.TabIndex = 0;
@@ -77,15 +84,15 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(83, 18);
+            this.txtName.Location = new System.Drawing.Point(44, 9);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(167, 21);
+            this.txtName.Size = new System.Drawing.Size(102, 21);
             this.txtName.TabIndex = 1;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(278, 20);
+            this.label5.Location = new System.Drawing.Point(172, 11);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 12);
             this.label5.TabIndex = 0;
@@ -94,7 +101,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(40, 51);
+            this.label2.Location = new System.Drawing.Point(9, 42);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 12);
             this.label2.TabIndex = 2;
@@ -102,15 +109,15 @@
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(328, 18);
+            this.txtId.Location = new System.Drawing.Point(219, 8);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(168, 21);
+            this.txtId.Size = new System.Drawing.Size(108, 21);
             this.txtId.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(40, 81);
+            this.label3.Location = new System.Drawing.Point(9, 72);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 12);
             this.label3.TabIndex = 2;
@@ -119,7 +126,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(266, 51);
+            this.label6.Location = new System.Drawing.Point(160, 42);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 12);
             this.label6.TabIndex = 2;
@@ -128,7 +135,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 112);
+            this.label4.Location = new System.Drawing.Point(339, 12);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 2;
@@ -137,7 +144,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(266, 81);
+            this.label7.Location = new System.Drawing.Point(339, 42);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 12);
             this.label7.TabIndex = 2;
@@ -145,37 +152,37 @@
             // 
             // txtGender
             // 
-            this.txtGender.Location = new System.Drawing.Point(83, 48);
+            this.txtGender.Location = new System.Drawing.Point(44, 39);
             this.txtGender.Name = "txtGender";
-            this.txtGender.Size = new System.Drawing.Size(167, 21);
+            this.txtGender.Size = new System.Drawing.Size(102, 21);
             this.txtGender.TabIndex = 3;
             // 
             // txtAge
             // 
-            this.txtAge.Location = new System.Drawing.Point(83, 78);
+            this.txtAge.Location = new System.Drawing.Point(44, 69);
             this.txtAge.Name = "txtAge";
-            this.txtAge.Size = new System.Drawing.Size(167, 21);
+            this.txtAge.Size = new System.Drawing.Size(102, 21);
             this.txtAge.TabIndex = 3;
             // 
             // txtBedInfo
             // 
-            this.txtBedInfo.Location = new System.Drawing.Point(328, 48);
+            this.txtBedInfo.Location = new System.Drawing.Point(219, 39);
             this.txtBedInfo.Name = "txtBedInfo";
-            this.txtBedInfo.Size = new System.Drawing.Size(168, 21);
+            this.txtBedInfo.Size = new System.Drawing.Size(108, 21);
             this.txtBedInfo.TabIndex = 3;
             // 
             // txtBirth
             // 
-            this.txtBirth.Location = new System.Drawing.Point(83, 109);
+            this.txtBirth.Location = new System.Drawing.Point(398, 8);
             this.txtBirth.Name = "txtBirth";
-            this.txtBirth.Size = new System.Drawing.Size(167, 21);
+            this.txtBirth.Size = new System.Drawing.Size(107, 21);
             this.txtBirth.TabIndex = 3;
             // 
             // txtCreateDate
             // 
-            this.txtCreateDate.Location = new System.Drawing.Point(327, 78);
+            this.txtCreateDate.Location = new System.Drawing.Point(397, 39);
             this.txtCreateDate.Name = "txtCreateDate";
-            this.txtCreateDate.Size = new System.Drawing.Size(168, 21);
+            this.txtCreateDate.Size = new System.Drawing.Size(109, 21);
             this.txtCreateDate.TabIndex = 3;
             // 
             // dgvReports
@@ -199,10 +206,32 @@
             this.dgvReports.Size = new System.Drawing.Size(471, 299);
             this.dgvReports.TabIndex = 0;
             // 
+            // colName
+            // 
+            this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colName.HeaderText = "报告";
+            this.colName.MinimumWidth = 200;
+            this.colName.Name = "colName";
+            this.colName.ReadOnly = true;
+            // 
+            // colDate
+            // 
+            this.colDate.HeaderText = "日期";
+            this.colDate.Name = "colDate";
+            this.colDate.ReadOnly = true;
+            this.colDate.Width = 125;
+            // 
+            // colPath
+            // 
+            this.colPath.HeaderText = "path";
+            this.colPath.Name = "colPath";
+            this.colPath.ReadOnly = true;
+            this.colPath.Visible = false;
+            // 
             // btnPrint
             // 
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrint.Location = new System.Drawing.Point(421, 375);
+            this.btnPrint.Location = new System.Drawing.Point(430, 384);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(75, 27);
             this.btnPrint.TabIndex = 6;
@@ -244,6 +273,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label12);
+            this.tabPage1.Controls.Add(this.dgvDetails);
             this.tabPage1.Controls.Add(this.txtSuggestion);
             this.tabPage1.Controls.Add(this.txtDiagnosis);
             this.tabPage1.Controls.Add(this.txtBirth);
@@ -271,26 +302,80 @@
             this.tabPage1.Text = "生成报告";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(9, 104);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(125, 12);
+            this.label12.TabIndex = 9;
+            this.label12.Text = "详细参数（无则不填）";
+            // 
+            // dgvDetails
+            // 
+            this.dgvDetails.AllowUserToAddRows = false;
+            this.dgvDetails.AllowUserToDeleteRows = false;
+            this.dgvDetails.AllowUserToResizeRows = false;
+            this.dgvDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colNum,
+            this.colLabel,
+            this.colDefault,
+            this.colActual});
+            this.dgvDetails.Location = new System.Drawing.Point(11, 125);
+            this.dgvDetails.MultiSelect = false;
+            this.dgvDetails.Name = "dgvDetails";
+            this.dgvDetails.RowHeadersVisible = false;
+            this.dgvDetails.RowTemplate.Height = 23;
+            this.dgvDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvDetails.Size = new System.Drawing.Size(495, 134);
+            this.dgvDetails.TabIndex = 8;
+            // 
+            // colNum
+            // 
+            this.colNum.HeaderText = "编号";
+            this.colNum.Name = "colNum";
+            this.colNum.ReadOnly = true;
+            this.colNum.Width = 40;
+            // 
+            // colLabel
+            // 
+            this.colLabel.HeaderText = "项目";
+            this.colLabel.Name = "colLabel";
+            // 
+            // colDefault
+            // 
+            this.colDefault.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDefault.FillWeight = 80F;
+            this.colDefault.HeaderText = "默认参数";
+            this.colDefault.Name = "colDefault";
+            // 
+            // colActual
+            // 
+            this.colActual.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colActual.HeaderText = "病人实际参数";
+            this.colActual.Name = "colActual";
+            // 
             // txtSuggestion
             // 
-            this.txtSuggestion.Location = new System.Drawing.Point(83, 261);
+            this.txtSuggestion.Location = new System.Drawing.Point(296, 270);
             this.txtSuggestion.Name = "txtSuggestion";
-            this.txtSuggestion.Size = new System.Drawing.Size(413, 102);
+            this.txtSuggestion.Size = new System.Drawing.Size(209, 105);
             this.txtSuggestion.TabIndex = 7;
             this.txtSuggestion.Text = "";
             // 
             // txtDiagnosis
             // 
-            this.txtDiagnosis.Location = new System.Drawing.Point(83, 143);
+            this.txtDiagnosis.Location = new System.Drawing.Point(44, 269);
             this.txtDiagnosis.Name = "txtDiagnosis";
-            this.txtDiagnosis.Size = new System.Drawing.Size(412, 102);
+            this.txtDiagnosis.Size = new System.Drawing.Size(211, 105);
             this.txtDiagnosis.TabIndex = 7;
             this.txtDiagnosis.Text = "";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(40, 264);
+            this.label11.Location = new System.Drawing.Point(261, 270);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(29, 12);
             this.label11.TabIndex = 2;
@@ -299,7 +384,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(40, 146);
+            this.label10.Location = new System.Drawing.Point(9, 270);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(29, 12);
             this.label10.TabIndex = 2;
@@ -354,28 +439,6 @@
             this.label8.TabIndex = 7;
             this.label8.Text = "住院号";
             // 
-            // colName
-            // 
-            this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colName.HeaderText = "报告";
-            this.colName.MinimumWidth = 200;
-            this.colName.Name = "colName";
-            this.colName.ReadOnly = true;
-            // 
-            // colDate
-            // 
-            this.colDate.HeaderText = "日期";
-            this.colDate.Name = "colDate";
-            this.colDate.ReadOnly = true;
-            this.colDate.Width = 125;
-            // 
-            // colPath
-            // 
-            this.colPath.HeaderText = "path";
-            this.colPath.Name = "colPath";
-            this.colPath.ReadOnly = true;
-            this.colPath.Visible = false;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -392,6 +455,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
@@ -432,6 +496,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPath;
+        private System.Windows.Forms.DataGridView dgvDetails;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDefault;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colActual;
     }
 }
 

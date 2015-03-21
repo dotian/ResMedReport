@@ -24,8 +24,16 @@ namespace ResMedSummaryReport
         public string Diagnosis;
         public string Suggestion;
 
+        public static string FlowEvaluationPeriodKey = "流量评估周期";
+        public string FlowEvaluationPeriod;
+
+        public static string SpO2EvaluationPeriodKey = "血氧饱和度评估周期";
+        public string SpO2EvaluationPeriod;
+
+        public List<string[]> Details = new List<string[]>();
+
         private static BaseFont bfSun = BaseFont.CreateFont("SIMSUN.TTC,1", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-        private static Font defaultFont = new Font(bfSun, 14);
+        private static Font defaultFont = new Font(bfSun, 11);
 
         private Document doc;
         private Document document
@@ -54,16 +62,26 @@ namespace ResMedSummaryReport
 
             document.Add(GenerateHeader1());
             document.Add(GenerateHeader2());
+            AddNewLine(document);
+
             document.Add(GenerateLineSeparate());
+
             document.Add(GenerateHeader3());
+
             document.Add(GenerateBasicInfoTable());
-            AddNewLine(document);
+
+            document.Add(GenerateDetailAnalysisTitle());
+            document.Add(GenerateDetailAnalysisPara("（一）", Enumerable.Range(0, 2)));
+            document.Add(GenerateDetailAnalysisPara("（二）", Enumerable.Range(2, 3)));
+            document.Add(GenerateDetailAnalysisPara("（三）", Enumerable.Range(5, 6)));
+            document.Add(GenerateDetailAnalysisPara("（四）", Enumerable.Range(11, 4)));
+
             document.Add(GenerateDiagnosisPara());
-            AddNewLine(document);
-            AddNewLine(document);
             document.Add(GenerateSuggestionPara());
 
             document.Close();
+
+            Process.Start(filePath);
         }
 
         public void Print()
@@ -77,31 +95,29 @@ namespace ResMedSummaryReport
 
         private IElement GenerateHeader1()
         {
-            var p = new Paragraph("上海市中医药大学附属普陀医院", new Font(bfSun, 18));
+            var p = new Paragraph("上海市中医药大学附属普陀医院", new Font(bfSun, 12));
             p.Alignment = Element.ALIGN_CENTER;
             return p;
         }
 
         private IElement GenerateHeader2()
         {
-            var p = new Paragraph("上海市普陀区中心医院", new Font(bfSun, 18));
+            var p = new Paragraph("上海市普陀区中心医院", new Font(bfSun, 12));
             p.Alignment = Element.ALIGN_CENTER;
             return p;
         }
 
         private IElement GenerateLineSeparate()
         {
-            var p = new Paragraph(" ");
-            p.Add(new LineSeparator());
-            p.Add(new Paragraph(" "));
-            return p;
+            return new LineSeparator();
         }
 
         private IElement GenerateHeader3()
         {
-            var p = new Paragraph("睡眠监测报告", new Font(bfSun, 18, Font.BOLD));
+            var p = new Paragraph("睡眠监测报告", new Font(bfSun, 14, Font.BOLD));
             p.Alignment = Element.ALIGN_CENTER;
-            p.Add(new Paragraph(" "));
+            p.SpacingBefore = 5f;
+            p.SpacingAfter = 10f;
             return p;
         }
 
@@ -139,22 +155,40 @@ namespace ResMedSummaryReport
             return table;
         }
 
+        private IElement GenerateDetailAnalysisTitle()
+        {
+            var p = new Paragraph(string.Format("分析结果（{0}：{1}/{2}：{3}）",
+                    FlowEvaluationPeriodKey,
+                    FlowEvaluationPeriod,
+                    SpO2EvaluationPeriodKey,
+                    SpO2EvaluationPeriod),
+                new Font(bfSun, 11, Font.BOLD));
+            p.SpacingBefore = 10f;
+            p.IndentationLeft = 54f;
+            return p;
+        }
+
+        private IElement GenerateDetailAnalysisPara(string title, IEnumerable<int> range)
+        {
+            var p = CreateDetailAnalysisParagraghTitle(title);
+            AddDetailLine(p, range);
+            return p;
+        }
+
         private IElement GenerateDiagnosisPara()
         {
-            var p = new Paragraph("一、诊断", new Font(bfSun, 16, Font.BOLD));
+            var p = CreateDetailAnalysisParagraghTitle("（五）诊断");
             var pContent = new Paragraph(Diagnosis, defaultFont);
-            pContent.SpacingBefore = 10f;
-            pContent.IndentationLeft = 40f;
+            pContent.IndentationLeft = 30f;
             p.Add(pContent);
             return p;
         }
 
         private IElement GenerateSuggestionPara()
         {
-            var p = new Paragraph("二、建议", new Font(bfSun, 16, Font.BOLD));
+            var p = CreateDetailAnalysisParagraghTitle("（六）建议");
             var pContent = new Paragraph(Suggestion, defaultFont);
-            pContent.SpacingBefore = 10f;
-            pContent.IndentationLeft = 40f;
+            pContent.IndentationLeft = 30f;
             p.Add(pContent);
             return p;
         }
@@ -179,9 +213,39 @@ namespace ResMedSummaryReport
             return cell;
         }
 
+        private Paragraph CreateDetailAnalysisParagraghTitle(string content)
+        {
+            var p = new Paragraph(content, new Font(bfSun, 12, Font.BOLD));
+            p.IndentationLeft = 50f;
+            p.SpacingBefore = 10f;
+            return p;
+        }
+
         private void AddNewLine(Document doc)
         {
             doc.Add(new Paragraph(" "));
+        }
+
+        private void AddDetailLine(Paragraph para, IEnumerable<int> range)
+        {
+            foreach (var index in range)
+            {
+                var p = new Paragraph(FormatDetailString(Details[index]), defaultFont);
+                p.IndentationLeft = 30f;
+                para.Add(p);
+            }
+        }
+
+        private string FormatDetailString(string[] details)
+        {
+            if (string.IsNullOrWhiteSpace(details[1]))
+            {
+                return string.Format("{0}：{1}", details[0], details[2]);
+            }
+            else
+            {
+                return string.Format("{0}：{2}（{1}）", details[0], details[1], details[2]);
+            }
         }
     }
 }
