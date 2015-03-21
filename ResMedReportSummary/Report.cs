@@ -81,7 +81,10 @@ namespace ResMedSummaryReport
 
             document.Close();
 
-            Process.Start(filePath);
+            if (ConfigurationManager.AppSettings["test"] == "true")
+            {
+                Process.Start(filePath);
+            }
         }
 
         public void Print()
